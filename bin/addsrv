@@ -16,7 +16,7 @@ server {
 
 	default_type text/plain;
 
-	server_name $service.chee.party
+	server_name $service.chee.party;
 	access_log $dir/logs/access.log;
 	error_log $dir/logs/error.log;
 
