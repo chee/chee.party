@@ -1,0 +1,11 @@
+expires $expires;
+client_max_body_size 222m;
+include /www/snoot.club/nginx/blocks/cors.nginx;
+include /www/snoot.club/nginx/blocks/proxy-cache.nginx;
+proxy_set_header Host $http_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_intercept_errors on;
+proxy_next_upstream http_404;
+

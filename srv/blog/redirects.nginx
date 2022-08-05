@@ -1,0 +1,59 @@
+# special posts
+location /corn {
+    return 301 https://chee.party/2022/05/05/corn/;
+}
+
+# post kinds to tags
+location /kind/audio/ {
+	return 302 /tag/music/;
+}
+
+location ~ ^/kind/(?<kind>.+)/$ {
+	return 302 /tag/${kind}s/;
+}
+
+
+# old blogs
+location ~ ^/contents/(.*) {
+    return 301 https://chee.party/$1$is_args$query_string;
+}
+
+location ~ ^/weblog(.*) {
+    return 302 https://chee.party$1$is_args$query_string;
+}
+
+location ~ ^/notebook/config(.*) {
+    return 302 https://chee.party/notebook/docfiles$1$is_args$query_string;
+}
+
+location /feed.xml {
+    return 301 https://chee.party/feed/;
+}
+
+location /atom.xml {
+    return 301 https://chee.party/feed/;
+}
+
+# wordpress specific
+location /wordpress/ {
+    rewrite ^/wordpress/wp-json/(.*?)$ /wordpress/index.php?rest_route=/$1 last;
+}
+
+# leaving this here for future rabbits who might want a subdirectory
+#    location ~ ^/weblog {
+#	root /srv/http/cheeslashweblog;
+#        expires $expires;
+#        client_max_body_size 2222m;
+#	index index.php;
+#        try_files $uri $uri/ /weblog/index.php?$args;
+#	location ~ \.php$ {
+#		try_files $uri =404;
+#		include fastcgi.conf;
+#		fastcgi_intercept_errors on;
+#		fastcgi_pass php;
+#	}
+#    }
+
+#    location / {
+#	return 302 /weblog;
+#    }

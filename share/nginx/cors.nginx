@@ -1,0 +1,32 @@
+if ($request_method = 'OPTIONS') {
+	add_header 'Access-Control-Allow-Origin' '*';
+	add_header 'Access-Control-Allow-Methods' 'GET, POST, PROPFIND, OPTIONS, depth';
+	add_header 'Access-Control-Max-Age' 1728000;
+	add_header 'Content-Type' 'text/plain charset=UTF-8';
+	add_header 'Content-Length' 0;
+	add_header 'Access-Control-Allow-Headers' 'DNT,authorization,Depth,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+	return 204;
+}
+
+if ($request_method = 'POST') {
+	add_header 'Access-Control-Allow-Origin' '*';
+	add_header 'Access-Control-Allow-Methods' 'GET, POST, PROPFIND, OPTIONS';
+	add_header 'Access-Control-Allow-Headers' 'DNT,authorization,Depth,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+}
+
+if ($request_method = 'GET') {
+	add_header 'Access-Control-Allow-Origin' '*';
+	add_header 'Access-Control-Allow-Methods' 'GET, POST, PROPFIND, OPTIONS';
+	add_header 'Access-Control-Allow-Headers' 'DNT,authorization,Depth,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+	add_header 'strict-transport-security' 'max-age=31536000; includeSubDomains; preload' always;
+}
+
+if ($request_method = 'PROPFIND') {
+	add_header 'Access-Control-Allow-Origin' '*';
+	add_header 'Access-Control-Allow-Methods' 'GET, POST, PROPFIND, OPTIONS';
+	add_header 'Access-Control-Allow-Headers' 'DNT,authorization,Depth,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+	add_header 'strict-transport-security' 'max-age=31536000; includeSubDomains; preload' always;
+}
+
+
+add_header 'strict-transport-security' 'max-age=31536000; includeSubDomains; preload' always;

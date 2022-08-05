@@ -1,0 +1,52 @@
+#!/bin/bash
+service="$1"
+port="$2"
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: addsrv <name> (<port> | html)"
+fi
+
+dir=/www/chee.party/srv/$service
+mkdir -p $dir/{logs,html}
+
+cat > $dir/nginx.conf <<EOF
+server {
+	include /www/chee.party/share/nginx/error_page.nginx;
+	include /www/chee.party/share/nginx/ssl.nginx;
+
+	default_type text/plain;
+
+	server_name $service.chee.party
+	access_log $dir/logs/access.log;
+	error_log $dir/logs/error.log;
+
+	location / {
+		include /www/chee.party/share/nginx/cors.nginx;
+		root $dir/html;
+EOF
+
+if [ "$port" != "html" ]; then
+    cat >> $dir/nginx.conf <<EOF
+		proxy_pass http://localhost:$port;
+		proxy_set_header Host \$http_host;
+		proxy_set_header X-Real-IP \$remote_addr;
+		proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto \$scheme;
+		proxy_set_header X-Party-Service $service;
+		include /www/snoot.club/nginx/blocks/proxy-cache.nginx;
+EOF
+fi
+
+cat >> $dir/nginx.conf <<EOF
+		expires \$expires;
+		client_max_body_size 222m;
+	}
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name $service.chee.party;
+	return 301 https://$service.chee.party\$request_uri;
+}
+EOF
