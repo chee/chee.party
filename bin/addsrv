@@ -8,6 +8,7 @@ fi
 
 dir=/www/chee.party/srv/$service
 mkdir -p $dir/{logs,html}
+touch $dir/logs/.keep
 
 cat > $dir/nginx.conf <<EOF
 server {
