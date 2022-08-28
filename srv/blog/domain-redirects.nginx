@@ -5,7 +5,7 @@ server {
     return 301 https://chee.party$request_uri;
 }
 server {
-    include /www/snoot.club/nginx/blocks/ssl.nginx;
+    include /www/chee.party/share/nginx/ssl.nginx;
     server_name chee.baby;
     return 301 https://chee.party$request_uri;
 }
@@ -16,7 +16,7 @@ server {
     return 301 https://chee.party$request_uri;
 }
 server {
-    include /www/snoot.club/nginx/blocks/ssl.nginx;
+    include /www/chee.party/share/nginx/ssl.nginx;
     server_name chee.news;
     return 301 https://chee.party$request_uri;
 }
@@ -27,12 +27,12 @@ server {
     return 301 https://chee.party$request_uri;
 }
 server {
-    include /www/snoot.club/nginx/blocks/ssl.nginx;
+    include /www/chee.party/share/nginx/ssl.nginx;
     server_name chee.club;
     return 301 https://chee.party$request_uri;
 }
 server {
-    include /www/snoot.club/nginx/blocks/ssl.nginx;
+    include /www/chee.party/share/nginx/ssl.nginx;
     server_name chee.snoot.club;
     return 301 https://chee.party$request_uri;
 }
