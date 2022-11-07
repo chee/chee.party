@@ -1,1 +1,2 @@
 /srv/*/logs/
+/var/nginx-cache

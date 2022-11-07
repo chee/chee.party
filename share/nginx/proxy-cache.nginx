@@ -1,4 +1,5 @@
-proxy_cache snoot;
+proxy_cache_path /www/chee.party/var/nginx-cache
+proxy_cache party;
 #proxy_cache_lock on;
 proxy_cache_background_update on;
 proxy_cache_revalidate on;
