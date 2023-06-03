@@ -21,9 +21,9 @@ server {
 	access_log $dir/logs/access.log;
 	error_log $dir/logs/error.log;
 
-	location / {
+	location / {                
 		include /www/chee.party/share/nginx/cors.nginx;
-		root $dir/html;
+		root /srv/www/$service;
 EOF
 
 if [ "$port" != "html" ]; then
