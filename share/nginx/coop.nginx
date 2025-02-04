@@ -1,0 +1,4 @@
+if ($request_method = 'GET') {
+	add_header 'Cross-Origin-Opener-Policy' 'same-origin' always;
+	add_header 'Cross-Origin-Embedder-Policy' 'require-corp' always;
+}

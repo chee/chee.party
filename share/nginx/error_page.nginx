@@ -3,16 +3,3 @@ error_page  403 /403.html;
 error_page  502 /502.html;
 error_page  500 503 504  /50x.html;
 
-location /404.html {
-	root /www/chee.party/share/html/;
-}
-location /403.html {
-	root /www/chee.party/share/html/;
-}
-location /502.html {
-	root /www/chee.party/share/html/;
-}
-location /50x.html {
-	root /www/chee.party/share/html/;
-}
-

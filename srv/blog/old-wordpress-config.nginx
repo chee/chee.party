@@ -1,12 +1,13 @@
 server {
     include /www/chee.party/share/nginx/error_page.nginx;
     include /www/chee.party/share/nginx/ssl.nginx;
+    include /www/chee.party/srv/blog/redirects.nginx;
     include /www/chee.party/srv/blog/w3sc.nginx;
     
     expires $expires;
     default_type text/plain;
 
-    server_name wp.chee.party;
+    server_name chee.party;
     access_log /www/chee.party/srv/blog/logs/access.log;
     error_log /www/chee.party/srv/blog/logs/error.log;
 
@@ -77,6 +78,8 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name wp.chee.party;
+    server_name chee.party;
     return 301 https://chee.party$request_uri;
 }
+
+include /www/chee.party/srv/blog/domain-redirects.nginx;
